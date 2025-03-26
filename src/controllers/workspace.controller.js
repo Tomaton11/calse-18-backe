@@ -5,12 +5,12 @@ import workspaceRepository from "../repositories/worksapce.repository..js";
 
 export const createWorkspaceController = async (req, res) => {
     try {
-        const {name} = req.body
+        const { name } = req.body
         const owner_id = req.user._id
-        const new_workspace = await workspaceRepository.createWorkspace({name, owner_id})
+        const new_workspace = await workspaceRepository.createWorkspace({ name, owner_id })
         res.json({
             ok: true,
-            status: 200,
+            status: 201,
             message: 'Workspace created!',
             data: {
                 new_workspace
@@ -36,22 +36,23 @@ export const createWorkspaceController = async (req, res) => {
 }
 
 
-export const inviteWorkspaceController = async (req, res) => {
+export const invteUserToWorkspaceController = async (req, res) => {
     try {
-        const user_id = req.user._id // id de quien invita
-        const {invite_id, workspace_id} = req.params  //di invitado
+        const user_id = req.user._id
+        const {invited_id, workspace_id} = req.params
 
-        const workspace_found = await workspaceRepository.addNewMembeer({workspace_id, owner_id: user_id, inviter_id: invite_id})
-        res.json({
-            ok: true,
-            status: 200,
-            message: 'Workspace invited!',
-            data: {
-                workspace_found
+        const workspace_found = await workspaceRepository.addNewMember({owner_id: user_id, invited_id, workspace_id})
+        res.json(
+            {
+                ok: true,
+                status: 201,
+                message: 'New member',
+                data: {
+                    workspace: workspace_found
+                }
             }
-        })
-    }
-    catch (error) {
+        )
+    } catch (error) {
         console.log("error al registrar", error);
 
         if (error.status) {

@@ -6,7 +6,6 @@ import { sendMail } from "./utils/mailer.utils.js";
 import cors from 'cors'
 import { verifyLuckyMiddleware } from "./middlewares/verifyLuckyMiddleware.js";
 import { authMiddleware } from "./middlewares/authMiddleware.js";
-import { ServerError } from "./utils/error.utils.js";
 import workspace_router from "./routes/workspace.router.js";
 import channelRouter from "./routes/channel.router.js";
 

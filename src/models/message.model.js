@@ -1,28 +1,22 @@
-
 import mongoose from "mongoose";
 
-
 const messageSchema = new mongoose.Schema({
-    channel: 
-    {
+    channel: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "channel"
+        ref: 'Channel'
     },
-    sender: 
-    {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
+    sender: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User'
     },
-    content: 
-    {
+    content: {
         type: String,
         required: true
-    } ,
+    },
     created_at: {
-        type: Date,
-        default: Date.now
+        type: Date, default: Date.now
     }
 })
 
-const Message = mongoose.model('message', messageSchema)    
+const Message = mongoose.model('Message', messageSchema)
 export default Message
