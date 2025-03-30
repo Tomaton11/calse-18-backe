@@ -9,7 +9,7 @@ const ENVIROMENT = {
     GMAIL_USERNAME: process.env.GMAIL_USERNAME,
     GMAIL_PASSWORD: process.env.GMAIL_PASSWORD,
     URL_BACKEND: process.env.URL_BACKEND || 'http://localhost:3000',
-    URL_FRONTEND: process.env.URL_FRONTEND ||  'https://frontend-61zsbav7m-tomas-enzo-garcilazos-projects.vercel.app',
+    URL_FRONTEND: process.env.URL_FRONTEND ||  'https://frontend-six-coral-49.vercel.app',
 }
 
 for(let key in ENVIROMENT){
