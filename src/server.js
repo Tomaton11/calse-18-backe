@@ -48,6 +48,7 @@ Probar hacer el registro con postman
 
 app.use('/api/auth', authRouter)
 app.use('/api/workspaces', workspace_router)
+
 app.use('api/channels', channelRouter)
 
 app.get('/api/test/comprar', authMiddleware, (req, res) => {
