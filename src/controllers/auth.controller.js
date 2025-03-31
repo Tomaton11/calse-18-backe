@@ -171,7 +171,7 @@ export const resetPasswordController = async (req, res) =>{
             subject: "Reset your password",
             html: `
             <h1>Has solicitado resetar tu contraseña de no ser tu ignora este mail</h1>
-            <a href='${ENVIROMENT.URL_FRONTEND}/rewrite-password?reset_token=${reset_token}'>Click aqui para resetear</a>
+            <a href='${ENVIROMENT.URL_BACKEND}/rewrite-password?reset_token=${reset_token}'>Click aqui para resetear</a>
             `
         })
         res.json(
