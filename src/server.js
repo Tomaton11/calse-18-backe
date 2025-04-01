@@ -4,7 +4,7 @@ import authRouter from "./routes/auth.routes.js";
 import mongoose from "./config/mongoDB.config.js";
 import { sendMail } from "./utils/mailer.utils.js";
 import cors from 'cors'
-import { verifyLuckyMiddleware } from "./middlewares/verifyLuckyMiddleware.js";
+
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 import workspace_router from "./routes/workspace.router.js";
 import channelRouter from "./routes/channel.router.js";
@@ -46,7 +46,7 @@ NO SE DEBE GUARDAR AL USUARIO EN NINGUN LADO con consologuear que llegan los dat
 Probar hacer el registro con postman
 */
 
-app.use('/api/auth', authRouter, authMiddleware)
+app.use('/api/auth', authRouter)
 app.use('/api/workspaces', workspace_router)
 
 app.use('api/channels', channelRouter)
@@ -59,7 +59,7 @@ app.get('/api/test/comprar', authMiddleware, (req, res) => {
     })
 } )
 
-app.listen(ENVIROMENT.PORT, () =>{
-    console.log(`El servidor se esta ejecutando en http://localhost:${ENVIROMENT}`)
-})
+/* app.listen(ENVIROMENT.URL_BACKEND, () =>{
+    console.log(`El servidor se esta ejecutando en ${URL_BACKEND}`)
+}) */
 
