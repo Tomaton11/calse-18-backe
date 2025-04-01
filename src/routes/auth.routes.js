@@ -1,6 +1,6 @@
 import express from "express";
 import { registerController, verifyEmailController, loginController, resetPasswordController, rewritePasswordController} from "../controllers/auth.controller.js";
-import { authMiddleware } from "../middlewares/authMiddleware.js";
+
 
 
 
