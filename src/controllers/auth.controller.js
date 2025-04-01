@@ -53,7 +53,7 @@ export const registerController = async (req, res) => {
             {
                 message: "user created",
                 status: 201,
-                ok: true
+                ok: true   
             }
         );
     } catch (error) {
