@@ -165,7 +165,7 @@ export const resetPasswordController = async (req, res) =>{
             throw new ServerError("User email is not validated yet", 400)
         }
 
-        const reset_token = jwt.sign({email, _id: user_found._id}, ENVIROMENT.SECRET_KEY_JWT, {expiresIn: '2h'})
+        const reset_token = jwt.sign({email, id: user_found.id}, ENVIROMENT.SECRET_KEY_JWT, {expiresIn: '2h'})
         await sendMail({
             to: email, 
             subject: "Reset your password",
