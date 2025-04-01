@@ -46,7 +46,7 @@ NO SE DEBE GUARDAR AL USUARIO EN NINGUN LADO con consologuear que llegan los dat
 Probar hacer el registro con postman
 */
 
-app.use('/api/auth', authRouter)
+app.use('/api/auth', authRouter, authMiddleware)
 app.use('/api/workspaces', workspace_router)
 
 app.use('api/channels', channelRouter)
@@ -59,7 +59,7 @@ app.get('/api/test/comprar', authMiddleware, (req, res) => {
     })
 } )
 
-app.listen(ENVIROMENT, () =>{
+app.listen(ENVIROMENT.PORT, () =>{
     console.log(`El servidor se esta ejecutando en http://localhost:${ENVIROMENT}`)
 })
 
