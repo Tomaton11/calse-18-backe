@@ -60,7 +60,6 @@ app.get('/api/test/comprar', authMiddleware, (req, res) => {
 } )
 
 app.listen(ENVIROMENT.PORT  , () =>{
-    console.log(`El servidor se esta ejecutando en ${ENVIROMENT.PORT}`)
-    console.log(`La base de datos se encuentra en ${ENVIROMENT.MONGO_DB_URL}`)
+    console.log(`El servidor se esta ejecutando en ${ENVIROMENT}`)
 }) 
 
