@@ -16,13 +16,13 @@ const app = express()
 app.use(cors())
 
 //Si quieren que sea reservado para cierto dominio
- 
+/*  
 app.use(cors(
     {
         origin: ENVIROMENT.URL_FRONTEND
     }
 )) 
-
+ */
 app.use(express.json())
 
 
