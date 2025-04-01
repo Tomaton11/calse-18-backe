@@ -59,7 +59,7 @@ app.get('/api/test/comprar', authMiddleware, (req, res) => {
     })
 } )
 
-app.listen(ENVIROMENT.PORT, () =>{
+app.listen(ENVIROMENT, () =>{
     console.log(`El servidor se esta ejecutando en http://localhost:${ENVIROMENT}`)
 })
 
