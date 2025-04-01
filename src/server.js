@@ -59,7 +59,7 @@ app.get('/api/test/comprar', authMiddleware, (req, res) => {
     })
 } )
 
-app.listen(ENVIROMENT.PORT, () =>{
-    console.log(`El servidor se esta ejecutando en ${ENVIROMENT}`)
+app.listen(ENVIROMENT.URL_BACKEND, () =>{
+    console.log(`El servidor se esta ejecutando en ${ENVIROMENT.URL_BACKEND}`)
 }) 
 
