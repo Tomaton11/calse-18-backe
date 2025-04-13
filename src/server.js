@@ -13,16 +13,16 @@ const app = express()
 
 //Dehabilito la politica de cors
 //Si quieren un backend publico
-app.use(cors())
+/* app.use(cors()) */
 
 //Si quieren que sea reservado para cierto dominio
-/*  
+
 app.use(cors(
     {
         origin: ENVIROMENT.URL_FRONTEND
     }
 )) 
- */
+ 
 app.use(express.json())
 
 
