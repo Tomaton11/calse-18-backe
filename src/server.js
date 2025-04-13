@@ -1,65 +1,29 @@
-import ENVIROMENT from "./config/enviroment.config.js";
-import express from 'express'
-import authRouter from "./routes/auth.routes.js";
-import mongoose from "./config/mongoDB.config.js";
-import { sendMail } from "./utils/mailer.utils.js";
-import cors from 'cors'
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import ENVIROMENT from './config/enviroment.config.js';
+import authRouter from './routes/auth.routes.js';
+import workspace_router from './routes/workspace.router.js';
+import channelRouter from './routes/channel.router.js';
 
-import { authMiddleware } from "./middlewares/authMiddleware.js";
-import workspace_router from "./routes/workspace.router.js";
-import channelRouter from "./routes/channel.router.js";
+const app = express();
 
-const app = express()
+// Middleware para parsear JSON
+app.use(express.json());
 
-//Dehabilito la politica de cors
-//Si quieren un backend publico
-/* app.use(cors()) */
+// Middleware CORS configurado con credentials
+app.use(cors({
+    origin: ENVIROMENT.URL_FRONTEND, // ej: 'https://frontend-six-coral-49.vercel.app'
+    credentials: true
+}));
 
-//Si quieren que sea reservado para cierto dominio
+// Rutas de la API
+app.use('/api/auth', authRouter);
+app.use('/api/workspace', workspace_router);
+app.use('/api/channels', channelRouter);
 
-app.use(cors(
-    {
-        origin: ENVIROMENT.URL_FRONTEND
-    }
-)) 
- 
-app.use(express.json())
+// Conexión a MongoDB y arranque del servidor
 
-
-/* 
-Crear una ruta llamada /api/auth
-
-POST /register
-body {
-    username
-    email
-    password
-}
-
-response: {
-    message: "User registered",
-    status:201,
-    ok: true
-}
-
-NO SE DEBE GUARDAR AL USUARIO EN NINGUN LADO con consologuear que llegan los datos en el body basta
-Probar hacer el registro con postman
-*/
-
-app.use('/api/auth', authRouter)
-app.use('/api/workspaces', workspace_router)
-
-app.use('api/channels', channelRouter)
-
-app.get('/api/test/comprar', authMiddleware, (req, res) => {
-    req.json({
-        status: 200,
-        ok: true,
-        message: 'producto comprado'
-    })
-} )
-
-app.listen(ENVIROMENT.URL_BACKEND, () =>{
-    console.log(`El servidor se esta ejecutando en ${ENVIROMENT.URL_BACKEND}`)
-}) 
-
+        app.listen(ENVIROMENT.PORT, () => {
+            console.log("Server running on port", ENVIROMENT.PORT);
+        });

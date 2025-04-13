@@ -42,17 +42,8 @@ class WorkspaceRepository {
     }
 }
 
-const getWorkspacesByUser = async (userId) => {
-    return await Workspace.find({
-        $or: [
-            { owner: userId },
-            { members: userId }
-        ]
-    }).populate('owner').populate('members');
-};
-
 
 
 
 const workspaceRepository = new WorkspaceRepository()
-export default { workspaceRepository, getWorkspacesByUser }
+export default workspaceRepository
