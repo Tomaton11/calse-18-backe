@@ -1,7 +1,7 @@
 import Message from "../models/message.model.js";
 import { ServerError } from "../utils/error.utils.js";
 import channelRepository from "./channel.repository.js";
-import workspaceRepository from "./worksapce.repository..js";
+import workspaceRepository from "./worksapce.repository.js";
 
 class MessageRepository {
     

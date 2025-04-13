@@ -1,5 +1,5 @@
 import Channel from "../models/Channel.model.js";
-import workspaceRepository from "./worksapce.repository..js";
+import workspaceRepository from "./worksapce.repository.js";
 import { ServerError } from "../utils/error.utils.js";
 
 class ChannelRepository {
