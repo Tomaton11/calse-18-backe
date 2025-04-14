@@ -12,16 +12,13 @@ const app = express()
 
 //Dehabilito la politica de cors
 //Si quieren un backend publico
-app.use(cors())
+const corsOptions = {
+	origin: ['http://localhost:5173', 'https://frontend-six-coral-49.vercel.app'], // 🚨 poné tu frontend real de Vercel
+	methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+	credentials: true
+};
 
-//Si quieren que sea reservado para cierto dominio
-/*  
-app.use(cors(
-    {
-        origin: ENVIROMENT.URL_FRONTEND
-    }
-)) 
- */
+app.use(cors(corsOptions));
 app.use(express.json())
 
 

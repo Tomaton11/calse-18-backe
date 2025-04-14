@@ -101,3 +101,37 @@ export const getUserWorkspacesController = async (req, res) => {
     }
 };
 
+export const getUserWorkspacesByIdController = async (req, res) => {
+	try {
+		const { user_id } = req.params;
+
+		if (!user_id) {
+			return res.status(400).json({
+				ok: false,
+				status: 400,
+				message: 'Falta el ID del usuario'
+			});
+		}
+
+		const { owned, member } = await workspaceRepository.getUserWorkspacesByOwnerAndMembership(user_id);
+
+		res.status(200).json({
+			ok: true,
+			status: 200,
+			message: 'Workspaces del usuario obtenidos',
+			data: {
+				owned_workspaces: owned,
+				member_workspaces: member
+			}
+		});
+	} catch (error) {
+		console.error('Error en getUserWorkspacesByIdController:', error);
+		res.status(500).json({
+			ok: false,
+			status: 500,
+			message: 'Error interno del servidor'
+		});
+	}
+};
+
+
