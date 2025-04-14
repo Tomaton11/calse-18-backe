@@ -74,18 +74,25 @@ export const invteUserToWorkspaceController = async (req, res) => {
 export const getUserWorkspacesController = async (req, res) => {
     try {
         const user_id = req.user._id;
-        const workspaces = await workspaceRepository.getUserWorkspaces(user_id);
+
+        console.log("User ID desde token:", user_id); // 👈 importante
+        
+        const { owned, member } = await workspaceRepository.getUserWorkspacesByOwnerAndMembership(user_id);
+
+        console.log("Owned workspaces:", owned.length);
+        console.log("Member workspaces:", member.length);
 
         res.status(200).json({
             ok: true,
             status: 200,
-            message: 'Workspaces fetched successfully',
+            message: 'User workspaces fetched successfully',
             data: {
-                workspaces
+                owned_workspaces: owned,
+                member_workspaces: member
             }
         });
     } catch (error) {
-        console.log("Error fetching workspaces:", error);
+        console.log("Error fetching user workspaces:", error);
         res.status(500).json({
             ok: false,
             status: 500,
@@ -93,3 +100,4 @@ export const getUserWorkspacesController = async (req, res) => {
         });
     }
 };
+
