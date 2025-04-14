@@ -70,3 +70,26 @@ export const invteUserToWorkspaceController = async (req, res) => {
         });
     }
 }
+//nuevo
+export const getUserWorkspacesController = async (req, res) => {
+    try {
+        const user_id = req.user._id;
+        const workspaces = await workspaceRepository.getUserWorkspaces(user_id);
+
+        res.status(200).json({
+            ok: true,
+            status: 200,
+            message: 'Workspaces fetched successfully',
+            data: {
+                workspaces
+            }
+        });
+    } catch (error) {
+        console.log("Error fetching workspaces:", error);
+        res.status(500).json({
+            ok: false,
+            status: 500,
+            message: "Internal server error"
+        });
+    }
+};

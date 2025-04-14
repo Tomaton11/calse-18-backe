@@ -40,6 +40,12 @@ class WorkspaceRepository {
         await workspace_found.save()
         return workspace_found
     }
+
+    async getUserWorkspaces(user_id) {
+    return await Workspace.find({
+        members: user_id
+    }).populate('owner', 'username email'); // Opcional: para traer info del owner
+}
 }
 
 
