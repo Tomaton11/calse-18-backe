@@ -4,6 +4,9 @@ import { createWorkspaceController, invteUserToWorkspaceController, getUserWorks
 
 const workspace_router = Router()
 
+workspace_router.get('/user/:user_id', authMiddleware, getUserWorkspacesByIdController);
+
+
 workspace_router.post('/', authMiddleware, createWorkspaceController)
 //nuevo
 workspace_router.get('/', authMiddleware, getUserWorkspacesController);
